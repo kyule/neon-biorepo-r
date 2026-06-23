@@ -11,7 +11,7 @@
 #
 #' @return A table of Biorepository sample type information
 #' 
-#' @details Provides detailed NEON Biorepository sample type metadata. The sampleTypeCode is used to filter records in the getBiorepositoryRecords function. 
+#' @details Provides detailed NEON Biorepository sample type metadata. The sampleTypeID is used to filter records in the getBiorepositoryRecords function. 
 #' 
 #' @examples	
 #' # Get 
@@ -118,7 +118,7 @@ getBiorepositorySampleTypes <- function() {
                                           rights,
                                           dwcaUrl)
     
-    names(sampleTypes) <- c('sampleTypeCode','sampleType','displayName','dataProductIDs',
+    names(sampleTypes) <- c('sampleTypeID','sampleType','displayName','dataProductIDs',
                             'protocol','sampleGroup','sampleSubGroup','preservationType',
                             'homepage','sampleClasses','description','citation',
                             'rights', 'darwinCoreArchiveUrl')
@@ -134,5 +134,4 @@ getBiorepositorySampleTypes <- function() {
     
 }
 
-a<-getBiorepositorySampleTypes()
 
