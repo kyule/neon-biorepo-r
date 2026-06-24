@@ -10,13 +10,15 @@
 #'
 #
 #' @return A table of Biorepository sample type information
+#' @param TODO after versioning: release Versioned NEON Biorepository data release. Defaults to "provisional" for current data. [character]
+#' @param TODO after token implementation: NEONtoken NEON token for access to NEON data. Required [character]
 #' 
 #' @details Provides detailed NEON Biorepository sample type metadata. The sampleTypeID is used to filter records in the getBiorepositoryRecords function. 
 #' 
 #' @examples	
 #' # Get 
 #' \dontrun{
-#' sampleTypes <- getBiorepositorySampleTypes()
+#' sampleTypes <- getBiorepositorySampleTypes(release = "provisional", token = NEONToken)
 #' }
 
 #' @export
@@ -29,7 +31,9 @@
 
 ##############################################################################################
 
-getBiorepositorySampleTypes <- function() {
+getBiorepositorySampleTypes <- function(release = "provisional", token = "NeonToken") {
+  
+  # token and versioning must be added
   
     library(httr)
     library(jsonlite)

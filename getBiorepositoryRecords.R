@@ -13,6 +13,7 @@
 #' @param startdate Start date of a range for filtering collecting events in "YYYY-MM" format. Note that this is a filter by the start of the collection period. The date the sample was collected from the field may be in the next month. Defaults to NA, but required if enddate is supplied.
 #' @param enddate End date of a range for filtering collecting events in "YYYY-MM" format. Note that this is a filter by the start of the collection period. The date the sample was collected from the field may be in the next month. Defaults to NA, but required if startdate is supplied.
 #' @param TODO after versioning: release Versioned NEON Biorepository data release. Defaults to "provisional" for current data. [character]
+#' @param TODO after token implementation: NEONtoken NEON token for access to NEON data. Required [character]
 #' @return A table of NEON Biorepository sample records
 #' 
 #' @details Related NEON samples can be connected to each other in a parent-child hierarchy. Parents can have one or many children, and children can have one or many parents. Sample hierarchies can be simple or complex - for example, particulate mass samples (dust filters) have no parents or children, whereas water chemistry samples can be subsampled for dissolved gas, isotope, and microbial measurements. This function finds all ancestors and descendants of the focal sample (the sampleNode), and all of their relatives, and so on recursively, to provide the entire hierarchy. See documentation for each data product for more specific information.
@@ -20,7 +21,7 @@
 #' @examples	
 #' # Find mammal blood samples collected at at the Santa Rita Experimental Range in 2021
 #' \dontrun{
-#'2021_SRER_mammal_blood <- getBiorepositoryRecords(sampleTypeIDs = "MAMC-BL", sites = "SRER", startdate = "2021-01", enddate = "2021-12")
+#'2021_SRER_mammal_blood <- getBiorepositoryRecords(sampleTypeIDs = "MAMC-BL", sites = "SRER", startdate = "2021-01", enddate = "2021-12", release = "provisional", token = NeonToken)
 #' }
 
 #' @export
@@ -33,8 +34,9 @@
 
 ##############################################################################################
 
-getBiorepositoryRecords <- function(sampleTypeIDs = NA, sites = NA, startdate = NA, enddate= NA, release = "provisional") {
+getBiorepositoryRecords <- function(sampleTypeIDs = NA, sites = NA, startdate = NA, enddate= NA, release = "provisional", token = NA) {
   
+  # TOKEN and versioning must be added
   # date sanity checks
     if (length(startdate) > 1 || length(enddate) > 1) {
       stop('Only one start and/or end date can be supplied.')
